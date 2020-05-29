@@ -213,7 +213,7 @@ def main(args):
 
     model, criterion, postprocessors = build_model(args)
     model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
-    num_classes = 6
+    num_classes = 7
     in_features = model.class_embed.in_features
     model.class_embed = torch.nn.Linear(in_features, num_classes)
     model.to(device)
@@ -297,9 +297,7 @@ def main(args):
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             sampler_train.set_epoch(epoch)
-        train_stats = train_one_epoch(
-            model, criterion, data_loader_train, optimizer, device, epoch,
-            args.clip_max_norm)
+        train_stats = train_one_epoch(model, criterion, data_loader_train, optimizer, device, epoch, args.clip_max_norm)
         lr_scheduler.step()
         if args.output_dir:
             checkpoint_paths = [output_dir / 'checkpoint.pth']
