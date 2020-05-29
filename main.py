@@ -212,7 +212,7 @@ def main(args):
     model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
     num_classes = 6
     in_features = model.class_embed.in_features
-    model.class_embed = nn.Linear(in_features, num_classes)
+    model.class_embed = torch.nn.Linear(in_features, num_classes)
     model.to(device)
 
     model_without_ddp = model
