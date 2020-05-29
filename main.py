@@ -236,8 +236,8 @@ def main(args):
                                   weight_decay=args.weight_decay)
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, args.lr_drop)
 
-    dataset_train = IBMDataset('/content/drive/My Drive/PubLayNet/train', '/content/drive/My Drive/PubLayNet/annotation.json', get_transform(train=True))
-    dataset_val = IBMDataset('/content/drive/My Drive/PubLayNet/train', '/content/drive/My Drive/PubLayNet/annotation.json', get_transform(train=False))
+    dataset_train = IBMDataset('/content/drive/My Drive/train', '/content/drive/My Drive/annotation.json', get_transform(train=True))
+    dataset_val = IBMDataset('/content/drive/My Drive/train', '/content/drive/My Drive/annotation.json', get_transform(train=False))
 
     # split the dataset in train and test set
     torch.manual_seed(1)
